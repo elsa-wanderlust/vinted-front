@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // IMPORT PAGES
 import Home from "./pages/Home";
+import Offer from "./pages/Offer";
 
 function App() {
   // STATES VARIABLES
@@ -33,6 +34,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/offer" element={<Offer />} />
         </Routes>
       )}
     </Router>
