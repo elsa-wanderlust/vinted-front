@@ -1,8 +1,10 @@
 import "./header.css";
 import logo from "../../assets/img/vinted-logo.png";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const Header = () => {
+const Header = ({ setToken }) => {
+  const cookie = Cookies.get("tokenVinted");
   return (
     <div className="header container">
       <div className="logo">
@@ -19,11 +21,21 @@ const Header = () => {
       </div>
       <div className="buttons">
         <div>
-          <Link to="/signup">
+          <Link className={cookie ? "hidden" : ""} to="/signup">
             <button>S'inscrire</button>
           </Link>
-
-          <button>Se connecter</button>
+          <Link className={cookie ? "hidden" : ""} to="/user/login">
+            <button>Se connecter</button>
+          </Link>
+          <button
+            className={!cookie ? "hidden" : ""}
+            onClick={() => {
+              Cookies.remove("tokenVinted");
+              setToken("");
+            }}
+          >
+            Se déconnecter
+          </button>
         </div>
 
         <button>Vends tes articles</button>

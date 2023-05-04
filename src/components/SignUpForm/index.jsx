@@ -1,13 +1,16 @@
-import "./signUp.css";
+import "./signUpForm.css";
 import { useState } from "react";
 import axios from "axios"; // to be able to send request
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const SignUp = () => {
+const SignUpForm = ({ setToken }) => {
   // DECLARE STATES
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const navigate = useNavigate();
 
   // DECLARE FUNCTIONS TO HANDLE CHANGES AND SUBMIT
   const handleUsernameChange = (event) => {
@@ -24,17 +27,17 @@ const SignUp = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(event);
-    const JsonBody = JSON.stringify({ username, email, password, newsletter });
-    console.log(JsonBody);
     try {
       const result = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        JsonBody
+        { username, email, password, newsletter }
       );
-      console.log(result);
+      // console.log(result);
+      setToken(result.data.token);
+      Cookies.set("tokenVinted", result.data.token, { expires: 7 });
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response);
     }
   };
 
@@ -74,4 +77,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpForm;

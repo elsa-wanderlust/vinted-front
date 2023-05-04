@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios"; // to be able to send request
+import axios from "axios";
 
 // IMPORT COMPONENTS
 import Hero from "../components/Hero";
@@ -9,6 +9,8 @@ const Home = () => {
   // DECLARE STATES
   const [isLoading, setisLoading] = useState(true);
   const [data, setData] = useState([]);
+
+  // USE EFFECT
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,13 +19,13 @@ const Home = () => {
         );
         setData(serverResponse.data);
         setisLoading(false);
-        // console.log(serverResponse.data);
       } catch (error) {
         console.log({ error: error.message });
       }
     };
     fetchData();
   }, []);
+  // RETURN
   return (
     <div>
       {isLoading ? (
