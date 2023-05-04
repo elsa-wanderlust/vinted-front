@@ -1,10 +1,29 @@
+import { useState, useEffect } from "react";
+import axios from "axios"; // to be able to send request
+import SignUp from "../components/SignUp";
+
 const SignUpPage = () => {
+  // DECLARE STATES
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [newsletter, setNewsletter] = useState(false);
+  // const [data, setData] = useState("");
+  // const [isLoading, setisLoading] = useState(true);
+
   return (
-    <form action="">
-      <input type="text" name="userName" placeholder="Nom d'utilisateur" />
-      <input type="email" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Mot de passe" />
-    </form>
+    <div>
+      <SignUp
+      // username={username}
+      // setUsername={setUsername}
+      // email={email}
+      // setEmail={setEmail}
+      // password={password}
+      // setPassword={setPassword}
+      // newsletter={newsletter}
+      // setNewsletter={setNewsletter}
+      />
+    </div>
   );
 };
 

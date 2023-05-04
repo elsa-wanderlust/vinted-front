@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <div>
       {isLoading ? (
-        <p>isloading</p>
+        <p>Chargement...</p>
       ) : (
         <div>
           <Hero />

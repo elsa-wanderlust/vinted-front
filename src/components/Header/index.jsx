@@ -1,6 +1,6 @@
 import "./header.css";
 import logo from "../../assets/img/vinted-logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
