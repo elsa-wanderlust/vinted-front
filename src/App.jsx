@@ -1,42 +1,25 @@
-import { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios"; // to be able to send request
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // IMPORT PAGES
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import SignUpPage from "./pages/SignUp";
+
+// IMPORT COMPONENTS
+import Header from "./components/Header";
 
 function App() {
-  // STATES VARIABLES
-  const [isLoading, setisLoading] = useState(true);
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const serverResponse = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
-        );
-        setData(serverResponse.data);
-        setisLoading(false);
-      } catch (error) {
-        console.log({ error: error.message });
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <Router>
-      {isLoading ? (
-        <p>la page est en cours de chargement ... </p>
-      ) : (
+      <div className="app">
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/offer" element={<Offer />} />
+          <Route path="/offer/:id" element={<Offer />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
-      )}
+      </div>
     </Router>
   );
 }
