@@ -1,25 +1,24 @@
-// receives 3 arguments (the filters entered by the user: search field, priceMin and priceMax) and returns a string
-// the string will be concatinated to the basic "/" page to send them as query
+// receives 3 arguments (the search, priceMin and priceMax entered by the user) and returns a string
+// the string will be concatenated to the by default "/" page to send the filters as query
 
-const handleFilters = (search, priceMin, priceMax) => {
-  let filter = "";
+const handleFilters = (togglePriceDesc, search, priceMin, priceMax) => {
+  let filterQueries = "?";
+  // togglePriceDesc has always a value (false by default)
+  if (togglePriceDesc) {
+    filterQueries = filterQueries.concat(`sort=price-desc`);
+  } else {
+    filterQueries = filterQueries.concat(`sort=price-asc`);
+  }
   if (search) {
-    filter = filter.concat(`?title=${search}`);
+    filterQueries = filterQueries.concat(`&title=${search}`);
   }
   if (priceMin) {
-    if (filter === "") {
-      filter = filter.concat(`?priceMin=${priceMin}`);
-    } else {
-      filter = filter.concat(`&priceMin=${priceMin}`);
-    }
+    filterQueries = filterQueries.concat(`&priceMin=${priceMin}`);
   }
   if (priceMax) {
-    if (filter === "") {
-      filter = filter.concat(`?priceMax=${priceMax}`);
-    } else {
-      filter = filter.concat(`&priceMax=${priceMax}`);
-    }
+    filterQueries = filterQueries.concat(`&priceMax=${priceMax}`);
   }
-  return filter;
+
+  return filterQueries;
 };
 export default handleFilters;

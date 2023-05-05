@@ -3,7 +3,7 @@ import logo from "../../assets/img/vinted-logo.png";
 import Cookies from "js-cookie";
 
 // IMPORT COMPONENT(S)
-import FilterArticle from "../FilterArticles";
+import FilterOffers from "../FilterOffers";
 
 const Header = ({
   modalVisible,
@@ -16,6 +16,8 @@ const Header = ({
   setPriceMin,
   priceMax,
   setPriceMax,
+  togglePriceDesc,
+  setTogglePriceDesc,
 }) => {
   const cookie = Cookies.get("tokenVinted");
 
@@ -25,46 +27,46 @@ const Header = ({
         <section className="logo">
           <img src={logo} alt="vinted logo written in green italic" />
         </section>
-        <FilterArticle
+        <FilterOffers
           search={search}
           setSearch={setSearch}
           priceMin={priceMin}
           setPriceMin={setPriceMin}
           priceMax={priceMax}
           setPriceMax={setPriceMax}
+          togglePriceDesc={togglePriceDesc}
+          setTogglePriceDesc={setTogglePriceDesc}
         />
-        <section>
-          <div className="buttons">
-            {!cookie ? (
-              <div>
-                <button
-                  onClick={() => {
-                    setModalVisible(!modalVisible);
-                    setWhichModal("signup");
-                  }}
-                >
-                  S'inscrire
-                </button>
-                <button
-                  onClick={() => {
-                    setModalVisible(!modalVisible);
-                    setWhichModal("login");
-                  }}
-                >
-                  Se connecter
-                </button>
-              </div>
-            ) : (
+        <section className="buttons">
+          {!cookie ? (
+            <div>
               <button
                 onClick={() => {
-                  Cookies.remove("tokenVinted");
-                  setToken("");
+                  setModalVisible(!modalVisible);
+                  setWhichModal("signup");
                 }}
               >
-                Se déconnecter
+                S'inscrire
               </button>
-            )}
-          </div>
+              <button
+                onClick={() => {
+                  setModalVisible(!modalVisible);
+                  setWhichModal("login");
+                }}
+              >
+                Se connecter
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                Cookies.remove("tokenVinted");
+                setToken("");
+              }}
+            >
+              Se déconnecter
+            </button>
+          )}
         </section>
       </div>
     </header>

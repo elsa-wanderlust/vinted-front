@@ -1,0 +1,17 @@
+.all-filters {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-filters {
+  display: flex;
+}
+
+.price-sorting {
+  display: flex;
+}
+
+price-sorting:oncolor {
+  display: flex;
+}

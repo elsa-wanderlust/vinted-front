@@ -6,11 +6,14 @@
 }
 
 .header img {
+  border: 2px magenta solid;
   width: 100px;
   height: 40px;
 }
 
 .logo {
+  border: 2px green solid;
+  width: 20%;
   flex: 15;
   height: 100%;
   display: flex;
@@ -18,17 +21,11 @@
   align-items: center;
 }
 
-.search-field {
-  flex: 50;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .buttons {
+  border: 2px blue solid;
   flex: 35;
   height: 100%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,4 +34,9 @@
 
 .buttons .hidden {
   display: none;
+}
+
+#material-id {
+  oncolor: "#2baeb7";
+  offcolor: "2baeb7";
 }

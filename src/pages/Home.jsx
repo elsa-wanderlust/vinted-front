@@ -1,26 +1,30 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// IMPORT COMPONENTS
+// IMPORT COMPONENT(S)
 import Hero from "../components/Hero";
 import AllOffers from "../components/AllOffers";
-// IMPORT FUNCTION
+// IMPORT FUNCTION(S
 import handleFilters from "../utils/handleFilters";
 
-const Home = ({ search, priceMin, priceMax }) => {
-  // DECLARE STATES
+const Home = ({ togglePriceDesc, search, priceMin, priceMax }) => {
+  // DECLARE STATE(S)
   const [isLoading, setisLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const filters = handleFilters(search, priceMin, priceMax);
-  console.log(`FILTERS VALUE : ${filters}`);
+  const filtersQueries = handleFilters(
+    togglePriceDesc,
+    search,
+    priceMin,
+    priceMax
+  );
 
-  // USE EFFECT
+  // USE EFFECT - sends a request to the server, each time one of the filters is updated
   useEffect(() => {
     const fetchData = async () => {
       try {
         const serverResponse = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers${filters || ""}`
+          `https://lereacteur-vinted-api.herokuapp.com/offers${filtersQueries}`
         );
         setData(serverResponse.data);
         setisLoading(false);
@@ -29,7 +33,7 @@ const Home = ({ search, priceMin, priceMax }) => {
       }
     };
     fetchData();
-  }, [search, priceMin, priceMax]);
+  }, [search, priceMin, priceMax, togglePriceDesc]);
   // RETURN
   return (
     <div>
@@ -38,7 +42,11 @@ const Home = ({ search, priceMin, priceMax }) => {
       ) : (
         <div>
           <Hero />
-          <AllOffers allOffers={data.offers} />
+          {data.offers.length > 0 ? (
+            <AllOffers allOffers={data.offers} />
+          ) : (
+            <p>Il n'y a pas d'offres qui correspondent à votre recherche</p>
+          )}
         </div>
       )}
     </div>
