@@ -2,45 +2,99 @@ import "./header.css";
 import logo from "../../assets/img/vinted-logo.png";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useState } from "react";
+
+// IMPORT COMPONENT(S)
+import SignUpForm from "../SignUpForm";
+import LoginForm from "../LoginForm";
 
 const Header = ({ setToken }) => {
   const cookie = Cookies.get("tokenVinted");
+
+  // DECLARE STATE(S)
+  const [modalSignup, setModalSignup] = useState(false);
+  const [modalLogin, setModalLogin] = useState(false);
+
   return (
-    <div className="header container">
-      <div className="logo">
-        <img src={logo} alt="vinted written in italic" />
-      </div>
-      <div className="search-field">
-        <form>
-          <input
-            type="text"
-            name="searchField"
-            placeholder="Recherche des articles"
-          />
-        </form>
-      </div>
-      <div className="buttons">
-        <div>
-          <Link className={cookie ? "hidden" : ""} to="/signup">
-            <button>S'inscrire</button>
-          </Link>
-          <Link className={cookie ? "hidden" : ""} to="/user/login">
-            <button>Se connecter</button>
-          </Link>
-          <button
-            className={!cookie ? "hidden" : ""}
-            onClick={() => {
-              Cookies.remove("tokenVinted");
-              setToken("");
-            }}
-          >
-            Se déconnecter
-          </button>
+    <header>
+      <div className="header container">
+        <section className="logo">
+          <img src={logo} alt="vinted logo written in green italic" />
+        </section>
+        <section className="search-field">
+          <form>
+            <input
+              type="text"
+              name="searchField"
+              placeholder="Recherche des articles"
+            />
+          </form>
+        </section>
+        <section>
+          <div className="buttons">
+            {!cookie ? (
+              <div>
+                <button
+                  onClick={() => {
+                    setModalSignup(true);
+                  }}
+                >
+                  S'inscrire
+                </button>
+                <button
+                  onClick={() => {
+                    setModalLogin(true);
+                  }}
+                >
+                  Se connecter
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  Cookies.remove("tokenVinted");
+                  setToken("");
+                }}
+              >
+                Se déconnecter
+              </button>
+            )}
+          </div>
+        </section>
+        <>
+          {modalSignup && (
+            <SignUpForm setToken={setToken} setModalSignup={setModalSignup} />
+          )}
+          {modalLogin && (
+            <LoginForm setToken={setToken} setModalLogin={setModalLogin} />
+          )}
+        </>
+
+        {/* <div className="buttons">
+          {!cookie ? (
+            <div>
+              <Link to="/signup">
+                <button>S'inscrire</button>
+              </Link>
+              <Link to="/user/login">
+                <button>Se connecter</button>
+              </Link>{" "}
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                Cookies.remove("tokenVinted");
+                setToken("");
+              }}
+            >
+              Se déconnecter
+            </button>
+          )}
         </div>
 
-        <button>Vends tes articles</button>
+        <button>Vends tes articles</button> */}
       </div>
-    </div>
+    </header>
   );
 };
 

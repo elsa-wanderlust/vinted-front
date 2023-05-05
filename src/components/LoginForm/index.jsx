@@ -4,7 +4,7 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const LoginForm = ({ setToken }) => {
+const LoginForm = ({ setToken, setModalLogin }) => {
   // DECLARE STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +25,7 @@ const LoginForm = ({ setToken }) => {
         { email, password }
       );
       setToken(result.data.token);
+      setModalLogin(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");
     } catch (error) {
@@ -33,24 +34,26 @@ const LoginForm = ({ setToken }) => {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h1>Se connecter</h1>
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        onChange={handleEmailChange}
-        value={email}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Mot de passe"
-        onChange={handlePasswordChange}
-        value={password}
-      />
-      <button type="submit">Se connecter</button>
-    </form>
+    <div className="modalContainer">
+      <form className="modal" onSubmit={handleSubmit}>
+        <h1>Se connecter</h1>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleEmailChange}
+          value={email}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          onChange={handlePasswordChange}
+          value={password}
+        />
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
   );
 };
 export default LoginForm;

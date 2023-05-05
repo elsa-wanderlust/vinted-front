@@ -3,11 +3,12 @@
 
 .app {
   font-family: "Roboto", sans-serif;
+  position: relative;
 }
 
 .container {
   border: 2px red solid;
-  width: 1244px;
+  max-width: 1244px;
   margin: 0 auto;
   height: 100%;
 }
@@ -60,4 +61,27 @@
 .items-details-offer-page .item-details > div {
   display: flex;
   justify-content: space-between;
+}
+
+/* MODAL */
+.modalContainer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border: green 10px solid;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.modalContainer .modal {
+  height: 50vh;
+  width: 50vw;
+  border: blue 2px solid;
+  position: absolute;
+  top: 25vh;
+  right: 25vw;
+  background-color: white;
 }

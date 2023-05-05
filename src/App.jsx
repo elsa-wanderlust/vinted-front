@@ -2,17 +2,16 @@ import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// IMPORT PAGES
+// IMPORT PAGE(S)
 import Home from "./pages/home";
 import Offer from "./pages/Offer";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-// IMPORT COMPONENTS
+// IMPORT COMPONENT(S)
 import Header from "./components/Header";
 
 function App() {
-  // SET STATE
+  // DECLARE STATE(S)
   const [token, setToken] = useState("");
+
   return (
     <Router>
       <div className="app">
@@ -20,8 +19,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
-          <Route path="/signup" element={<SignUp setToken={setToken} />} />
-          <Route path="/user/login" element={<Login setToken={setToken} />} />
         </Routes>
       </div>
     </Router>
