@@ -4,7 +4,7 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const SignUpForm = ({ modalVisible, setModalVisible, setToken }) => {
+const SignUpForm = ({ setModalVisible, setToken }) => {
   console.log("time to signup");
   // DECLARE STATES
   const [username, setUsername] = useState("");
@@ -34,10 +34,7 @@ const SignUpForm = ({ modalVisible, setModalVisible, setToken }) => {
         { username, email, password, newsletter }
       );
       setToken(result.data.token);
-      // const modalVisibleCopy = { ...modalVisible };
-      // modalVisibleCopy.signup = false;
-      // setModalVisible(modalVisibleCopy);
-      // // setModalSignup(false);
+      setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");
     } catch (error) {
@@ -46,9 +43,22 @@ const SignUpForm = ({ modalVisible, setModalVisible, setToken }) => {
   };
 
   return (
-    <div>
-      <form className="modal" onSubmit={handleSubmit}>
-        <h1>S'inscrire</h1>
+    <div
+      className="modal"
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+    >
+      <button
+        className="closing-button"
+        onClick={() => {
+          setModalVisible(false);
+        }}
+      >
+        X
+      </button>
+      <h1>S'inscrire</h1>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
@@ -70,16 +80,16 @@ const SignUpForm = ({ modalVisible, setModalVisible, setToken }) => {
           onChange={handlePasswordChange}
           value={password}
         />
-        <input
-          id="newsletter"
-          type="checkbox"
-          name="newsletter"
-          onClick={handleClickNewsletter}
-        />
-        <div>
-          <button type="submit">S'inscrire</button>
+        <div className="newsletter">
+          <input
+            id="newsletter"
+            type="checkbox"
+            name="newsletter"
+            onClick={handleClickNewsletter}
+          />
           <label htmlFor="newsletter">S'inscrire à la newsletter</label>
         </div>
+        <button type="submit">S'inscrire</button>
       </form>
     </div>
   );

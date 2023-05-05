@@ -1,19 +1,23 @@
 import "./header.css";
 import logo from "../../assets/img/vinted-logo.png";
-// import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-// import { useState } from "react";
 
 // IMPORT COMPONENT(S)
-import SignUpForm from "../SignUpForm";
-import LoginForm from "../LoginForm";
+import FilterArticle from "../FilterArticles";
 
-const Header = ({ modalVisible, setModalVisible, setToken }) => {
+const Header = ({
+  modalVisible,
+  setModalVisible,
+  setWhichModal,
+  setToken,
+  search,
+  setSearch,
+  priceMin,
+  setPriceMin,
+  priceMax,
+  setPriceMax,
+}) => {
   const cookie = Cookies.get("tokenVinted");
-
-  // DECLARE STATE(S)
-  // const [modalSignup, setModalSignup] = useState(false);
-  // const [modalLogin, setModalLogin] = useState(false);
 
   return (
     <header>
@@ -21,15 +25,14 @@ const Header = ({ modalVisible, setModalVisible, setToken }) => {
         <section className="logo">
           <img src={logo} alt="vinted logo written in green italic" />
         </section>
-        <section className="search-field">
-          <form>
-            <input
-              type="text"
-              name="searchField"
-              placeholder="Recherche des articles"
-            />
-          </form>
-        </section>
+        <FilterArticle
+          search={search}
+          setSearch={setSearch}
+          priceMin={priceMin}
+          setPriceMin={setPriceMin}
+          priceMax={priceMax}
+          setPriceMax={setPriceMax}
+        />
         <section>
           <div className="buttons">
             {!cookie ? (
@@ -37,17 +40,15 @@ const Header = ({ modalVisible, setModalVisible, setToken }) => {
                 <button
                   onClick={() => {
                     setModalVisible(!modalVisible);
-                    // const modalVisibleCopy = { ...modalVisible };
-                    // modalVisibleCopy.signup = true;
-                    // setModalVisible(modalVisibleCopy);
-                    // setModalSignup(true);
+                    setWhichModal("signup");
                   }}
                 >
                   S'inscrire
                 </button>
                 <button
                   onClick={() => {
-                    // setModalVisible(true);
+                    setModalVisible(!modalVisible);
+                    setWhichModal("login");
                   }}
                 >
                   Se connecter
@@ -56,8 +57,8 @@ const Header = ({ modalVisible, setModalVisible, setToken }) => {
             ) : (
               <button
                 onClick={() => {
-                  // Cookies.remove("tokenVinted");
-                  // setToken("");
+                  Cookies.remove("tokenVinted");
+                  setToken("");
                 }}
               >
                 Se déconnecter
@@ -65,38 +66,6 @@ const Header = ({ modalVisible, setModalVisible, setToken }) => {
             )}
           </div>
         </section>
-        {/* <>
-          {modalSignup && (
-            <SignUpForm setToken={setToken} setModalSignup={setModalSignup} />
-          )}
-          {modalLogin && (
-            <LoginForm setToken={setToken} setModalLogin={setModalLogin} />
-          )}
-        </> */}
-
-        {/* <div className="buttons">
-          {!cookie ? (
-            <div>
-              <Link to="/signup">
-                <button>S'inscrire</button>
-              </Link>
-              <Link to="/user/login">
-                <button>Se connecter</button>
-              </Link>{" "}
-            </div>
-          ) : (
-            <button
-              onClick={() => {
-                Cookies.remove("tokenVinted");
-                setToken("");
-              }}
-            >
-              Se déconnecter
-            </button>
-          )}
-        </div>
-
-        <button>Vends tes articles</button> */}
       </div>
     </header>
   );

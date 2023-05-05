@@ -13,6 +13,10 @@ function App() {
   // DECLARE STATE(S)
   const [token, setToken] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [whichModal, setWhichModal] = useState("");
+  const [search, setSearch] = useState("");
+  const [priceMin, setPriceMin] = useState("");
+  const [priceMax, setPriceMax] = useState("");
 
   return (
     <Router>
@@ -20,16 +24,28 @@ function App() {
         <Header
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
+          setWhichModal={setWhichModal}
           setToken={setToken}
+          search={search}
+          setSearch={setSearch}
+          priceMin={priceMin}
+          setPriceMin={setPriceMin}
+          priceMax={priceMax}
+          setPriceMax={setPriceMax}
         />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <Home search={search} priceMin={priceMin} priceMax={priceMax} />
+            }
+          />
           <Route path="/offer/:id" element={<Offer />} />
         </Routes>
         {modalVisible && (
           <Modal
-            modalVisible={modalVisible}
             setModalVisible={setModalVisible}
+            whichModal={whichModal}
             setToken={setToken}
           />
         )}
