@@ -24,6 +24,7 @@ const LoginForm = ({ setToken, setModalLogin }) => {
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
         { email, password }
       );
+
       setToken(result.data.token);
       setModalLogin(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });

@@ -4,7 +4,8 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const SignUpForm = ({ setToken, setModalSignup }) => {
+const SignUpForm = ({ modalVisible, setModalVisible, setToken }) => {
+  console.log("time to signup");
   // DECLARE STATES
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -33,7 +34,10 @@ const SignUpForm = ({ setToken, setModalSignup }) => {
         { username, email, password, newsletter }
       );
       setToken(result.data.token);
-      setModalSignup(false);
+      // const modalVisibleCopy = { ...modalVisible };
+      // modalVisibleCopy.signup = false;
+      // setModalVisible(modalVisibleCopy);
+      // // setModalSignup(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");
     } catch (error) {
@@ -42,7 +46,7 @@ const SignUpForm = ({ setToken, setModalSignup }) => {
   };
 
   return (
-    <div className="modalContainer">
+    <div>
       <form className="modal" onSubmit={handleSubmit}>
         <h1>S'inscrire</h1>
         <input
@@ -72,8 +76,10 @@ const SignUpForm = ({ setToken, setModalSignup }) => {
           name="newsletter"
           onClick={handleClickNewsletter}
         />
-        <label htmlFor="newsletter">S'inscrire à la newsletter</label>
-        <button type="submit">S'inscrire</button>
+        <div>
+          <button type="submit">S'inscrire</button>
+          <label htmlFor="newsletter">S'inscrire à la newsletter</label>
+        </div>
       </form>
     </div>
   );

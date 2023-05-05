@@ -1,19 +1,19 @@
 import "./header.css";
 import logo from "../../assets/img/vinted-logo.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useState } from "react";
+// import { useState } from "react";
 
 // IMPORT COMPONENT(S)
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
 
-const Header = ({ setToken }) => {
+const Header = ({ modalVisible, setModalVisible, setToken }) => {
   const cookie = Cookies.get("tokenVinted");
 
   // DECLARE STATE(S)
-  const [modalSignup, setModalSignup] = useState(false);
-  const [modalLogin, setModalLogin] = useState(false);
+  // const [modalSignup, setModalSignup] = useState(false);
+  // const [modalLogin, setModalLogin] = useState(false);
 
   return (
     <header>
@@ -36,14 +36,18 @@ const Header = ({ setToken }) => {
               <div>
                 <button
                   onClick={() => {
-                    setModalSignup(true);
+                    setModalVisible(!modalVisible);
+                    // const modalVisibleCopy = { ...modalVisible };
+                    // modalVisibleCopy.signup = true;
+                    // setModalVisible(modalVisibleCopy);
+                    // setModalSignup(true);
                   }}
                 >
                   S'inscrire
                 </button>
                 <button
                   onClick={() => {
-                    setModalLogin(true);
+                    // setModalVisible(true);
                   }}
                 >
                   Se connecter
@@ -52,8 +56,8 @@ const Header = ({ setToken }) => {
             ) : (
               <button
                 onClick={() => {
-                  Cookies.remove("tokenVinted");
-                  setToken("");
+                  // Cookies.remove("tokenVinted");
+                  // setToken("");
                 }}
               >
                 Se déconnecter
@@ -61,14 +65,14 @@ const Header = ({ setToken }) => {
             )}
           </div>
         </section>
-        <>
+        {/* <>
           {modalSignup && (
             <SignUpForm setToken={setToken} setModalSignup={setModalSignup} />
           )}
           {modalLogin && (
             <LoginForm setToken={setToken} setModalLogin={setModalLogin} />
           )}
-        </>
+        </> */}
 
         {/* <div className="buttons">
           {!cookie ? (
