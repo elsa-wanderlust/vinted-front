@@ -9,8 +9,12 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // FONTAWESOME
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-library.add(faArrowUp, faArrowDown);
+import {
+  faArrowUp,
+  faArrowDown,
+  faCircle,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faArrowUp, faArrowDown, faCircle);
 
 function App() {
   // DECLARE STATE(S)

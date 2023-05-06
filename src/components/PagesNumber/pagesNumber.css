@@ -1,0 +1,16 @@
+.page-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.page-button {
+  height: 10px;
+}
+
+.page-buttons .button-selected {
+  color: #2baeb7;
+}
+
+.page-buttons .button-not-selected {
+  color: darkgray;
+}

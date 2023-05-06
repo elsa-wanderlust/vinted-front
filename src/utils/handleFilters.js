@@ -1,7 +1,13 @@
-// receives 3 arguments (the search, priceMin and priceMax entered by the user) and returns a string
+// receives 5 arguments (price sorting, page number, the search, priceMin and priceMax entered by the user) and returns a string
 // the string will be concatenated to the by default "/" page to send the filters as query
 
-const handleFilters = (togglePriceDesc, search, priceMin, priceMax) => {
+const handleFilters = (
+  togglePriceDesc,
+  pageNumber,
+  search,
+  priceMin,
+  priceMax
+) => {
   let filterQueries = "?";
   // togglePriceDesc has always a value (false by default)
   if (togglePriceDesc) {
@@ -9,6 +15,8 @@ const handleFilters = (togglePriceDesc, search, priceMin, priceMax) => {
   } else {
     filterQueries = filterQueries.concat(`sort=price-asc`);
   }
+  // pageNumber has always a value (1 by default)
+  filterQueries = filterQueries.concat(`&page=${pageNumber}`);
   if (search) {
     filterQueries = filterQueries.concat(`&title=${search}`);
   }
