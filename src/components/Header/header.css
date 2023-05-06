@@ -35,8 +35,3 @@
 .buttons .hidden {
   display: none;
 }
-
-#material-id {
-  oncolor: "#2baeb7";
-  offcolor: "2baeb7";
-}

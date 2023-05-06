@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const SignUpForm = ({ setModalVisible, setToken }) => {
-  console.log("time to signup");
-  // DECLARE STATES
+  // DECLARE STATE(S)
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  // DECLARE VARIABLE(S)
   const navigate = useNavigate();
 
   // DECLARE FUNCTIONS TO HANDLE CHANGES AND SUBMIT
@@ -29,16 +30,22 @@ const SignUpForm = ({ setModalVisible, setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        { username, email, password, newsletter }
-      );
+      const result = await axios.post("http://localhost:3000/user/signup", {
+        username,
+        email,
+        password,
+        newsletter,
+      });
       setToken(result.data.token);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");
     } catch (error) {
-      console.log(error.response);
+      if (error.response.status === 409) {
+        setErrorMessage("Il y a déjà un compte associé à cet email");
+      } else if (error.response.data.message === "missing parameter") {
+        setErrorMessage("Merci de remplir tous les champs");
+      }
     }
   };
 
@@ -90,6 +97,7 @@ const SignUpForm = ({ setModalVisible, setToken }) => {
           <label htmlFor="newsletter">S'inscrire à la newsletter</label>
         </div>
         <button type="submit">S'inscrire</button>
+        {errorMessage && <p>{errorMessage}</p>}
       </form>
     </div>
   );

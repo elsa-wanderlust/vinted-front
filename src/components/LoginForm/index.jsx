@@ -8,6 +8,9 @@ const LoginForm = ({ setModalVisible, setToken }) => {
   // DECLARE STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // DECLARE VARIABLE(S)
   const navigate = useNavigate();
 
   // DECLARE FUNCTIONS TO HANDLE CHANGES AND SUBMIT
@@ -20,17 +23,19 @@ const LoginForm = ({ setModalVisible, setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
-        { email, password }
-      );
+      const result = await axios.post("http://localhost:3000/user/login", {
+        email,
+        password,
+      });
 
       setToken(result.data.token);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");
     } catch (error) {
-      console.log(error.response);
+      if (error.response.status === 401) {
+        setErrorMessage("L'email et/ou le mot de passe ne sont pas correct");
+      }
     }
   };
 
@@ -66,6 +71,7 @@ const LoginForm = ({ setModalVisible, setToken }) => {
           value={password}
         />
         <button type="submit">Se connecter</button>
+        {errorMessage && <p>{errorMessage}</p>}
       </form>
     </div>
   );

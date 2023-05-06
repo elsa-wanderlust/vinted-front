@@ -24,7 +24,7 @@ const Home = ({ togglePriceDesc, search, priceMin, priceMax }) => {
     const fetchData = async () => {
       try {
         const serverResponse = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers${filtersQueries}`
+          `http://localhost:3000/offers${filtersQueries}`
         );
         setData(serverResponse.data);
         setisLoading(false);

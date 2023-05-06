@@ -1,5 +1,6 @@
 import "./filterOffers.css";
 import Switch from "react-switch"; // pkg for the price sorting toggle
+import { Range } from "react-range"; // pkg for the price range sliding buttons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FilterOffers = ({
