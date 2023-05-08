@@ -10,9 +10,9 @@
   justify-content: space-around;
 }
 
-.offer-page > section {
+.offer-page > section:first-child {
   /* border: red solid 1px; */
-  width: 445px;
+  width: 330px;
   height: 500px;
 }
 
@@ -23,6 +23,8 @@
 }
 
 .offer-page > section:nth-child(2) {
+  width: 600px;
+  height: 500px;
   padding: 40px 60px;
 }
 

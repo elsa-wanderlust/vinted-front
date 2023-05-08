@@ -1,0 +1,51 @@
+.publish-page {
+  width: 100%;
+  height: 100vh;
+  background-color: #ebedee;
+}
+
+.publish-page .container {
+  padding: 40px 0;
+}
+
+.publish-page h1 {
+  font-size: 24px;
+  line-height: 20px;
+  margin-bottom: 25px;
+}
+
+.publish-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.publish-page form > section {
+  border: darkgray 1px solid;
+  height: 100px;
+  width: 100%;
+  background-color: white;
+}
+
+.publish-page form .add-picture {
+  height: 250px;
+  padding: 25px;
+}
+
+form .add-picture .dot-border {
+  height: 100%;
+  width: 100%;
+  hyphens: auto;
+  border: lightgray 1px dotted;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-picture label {
+  cursor: pointer;
+}
+
+.add-picture input {
+  display: none;
+}

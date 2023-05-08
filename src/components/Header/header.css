@@ -12,6 +12,7 @@
 .header img {
   /* border: 2px magenta solid; */
   width: 100px;
+  cursor: pointer;
 }
 
 .header .logo {

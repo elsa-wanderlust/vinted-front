@@ -21,7 +21,7 @@ const OfferDisplay = ({ offer }) => {
       <div className="seller">
         <div>
           {sellersAvatar ? (
-            <img src={sellersAvatar.url} alt={`image of ${sellersName}`} />
+            <img src={sellersAvatar.url} alt={`avatar of ${sellersName}`} />
           ) : (
             ""
           )}

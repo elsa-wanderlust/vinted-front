@@ -17,13 +17,11 @@ const SelectedOffer = ({ offerSelected }) => {
       product_details2[key] = value;
     }
   }
-  const sellersAvatar = "";
-  // const sellersAvatar = owner.account.avatar.secure_url;
+  const sellersAvatar = owner.account.avatar;
   console.log(sellersAvatar);
   return (
     <div className="offer-page">
       <section>
-        {/* TO BE UPDATE WITH CARROUSEL */}
         <img src={product_image.secure_url} alt="" />
       </section>
       <section>
@@ -47,7 +45,14 @@ const SelectedOffer = ({ offerSelected }) => {
           <p>{product_description}</p>
         </div>
         <div className="seller-info">
-          {sellersAvatar ? <img src={sellersAvatar} alt="" /> : ""}
+          {sellersAvatar ? (
+            <img
+              src={sellersAvatar.url}
+              alt={`avatar of ${owner.account.username}`}
+            />
+          ) : (
+            ""
+          )}
           <p>{owner.account.username}</p>
         </div>
         <button>Acheter</button>

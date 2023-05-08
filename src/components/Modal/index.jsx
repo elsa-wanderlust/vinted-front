@@ -1,6 +1,6 @@
 import "./modal.css";
 
-// IMPORT COMPONENTS
+// IMPORT COMPONENT(S)
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
 

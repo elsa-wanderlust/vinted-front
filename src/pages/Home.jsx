@@ -43,7 +43,6 @@ const Home = ({
         setisLoading(false);
         // calculate the number of pages needed (base if 5 offer per page)
         setNumberOfPages(Math.ceil(serverResponse.data.count / 5));
-        console.log(`data is ${serverResponse}`);
       } catch (error) {
         console.log({ error: error.message });
       }

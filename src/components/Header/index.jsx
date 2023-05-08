@@ -28,7 +28,13 @@ const Header = ({
     <header>
       <div className="header container">
         <section className="logo">
-          <img src={logo} alt="vinted logo written in green italic" />
+          <img
+            onClick={() => {
+              navigate("/");
+            }}
+            src={logo}
+            alt="vinted logo written in green italic"
+          />
         </section>
         <FilterOffers
           search={search}
