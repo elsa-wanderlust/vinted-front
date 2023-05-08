@@ -1,6 +1,7 @@
 // IMPORT PAGE(S)
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import Publish from "./pages/Publish";
 // IMPORT COMPONENT(S)
 import Header from "./components/Header";
 import Modal from "./components/Modal";
@@ -13,12 +14,13 @@ import {
   faArrowUp,
   faArrowDown,
   faCircle,
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faArrowUp, faArrowDown, faCircle);
+library.add(faArrowUp, faArrowDown, faCircle, faMagnifyingGlass);
 
 function App() {
   // DECLARE STATE(S)
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState();
   const [modalVisible, setModalVisible] = useState(false);
   const [whichModal, setWhichModal] = useState("");
   const [search, setSearch] = useState("");
@@ -28,7 +30,7 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
+      <div className={modalVisible ? "app no-scroll" : "app"}>
         <Header
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
@@ -52,14 +54,18 @@ function App() {
                 priceMin={priceMin}
                 priceMax={priceMax}
                 togglePriceDesc={togglePriceDesc}
+                setModalVisible={setModalVisible}
+                setWhichModal={setWhichModal}
               />
             }
           />
           <Route path="/offer/:id" element={<Offer />} />
+          <Route path="/publish" element={<Publish />} />
         </Routes>
         {modalVisible && (
           <Modal
             setModalVisible={setModalVisible}
+            setWhichModal={setWhichModal}
             whichModal={whichModal}
             setToken={setToken}
           />

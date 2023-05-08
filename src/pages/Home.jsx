@@ -9,7 +9,14 @@ import PagesNumber from "../components/PagesNumber";
 // IMPORT FUNCTION(S
 import handleFilters from "../utils/handleFilters";
 
-const Home = ({ togglePriceDesc, search, priceMin, priceMax }) => {
+const Home = ({
+  search,
+  priceMin,
+  priceMax,
+  togglePriceDesc,
+  setModalVisible,
+  setWhichModal,
+}) => {
   // DECLARE STATE(S)
   const [isLoading, setisLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -36,6 +43,7 @@ const Home = ({ togglePriceDesc, search, priceMin, priceMax }) => {
         setisLoading(false);
         // calculate the number of pages needed (base if 5 offer per page)
         setNumberOfPages(Math.ceil(serverResponse.data.count / 5));
+        console.log(`data is ${serverResponse}`);
       } catch (error) {
         console.log({ error: error.message });
       }
@@ -54,11 +62,14 @@ const Home = ({ togglePriceDesc, search, priceMin, priceMax }) => {
         <p>Chargement...</p>
       ) : (
         <div>
-          <Hero />
+          <Hero
+            setModalVisible={setModalVisible}
+            setWhichModal={setWhichModal}
+          />
           {data.offers.length > 0 ? (
             <div>
               <AllOffers allOffers={data.offers} />
-              <div className="page-buttons">
+              <div className="page-buttons container">
                 {pagesTab.map((elem, index) => {
                   return (
                     <PagesNumber
@@ -72,7 +83,9 @@ const Home = ({ togglePriceDesc, search, priceMin, priceMax }) => {
               </div>
             </div>
           ) : (
-            <p>Il n'y a pas d'offres qui correspondent à votre recherche</p>
+            <p className="no-offer-available">
+              Il n'y a pas d'offres qui correspondent à votre recherche
+            </p>
           )}
         </div>
       )}

@@ -1,7 +1,7 @@
-import "./offer.css";
+import "./offerDisplay.css";
 import { Link } from "react-router-dom";
 
-const Offer = ({ offer }) => {
+const OfferDisplay = ({ offer }) => {
   const {
     _id,
     // product_name,
@@ -11,10 +11,11 @@ const Offer = ({ offer }) => {
     owner,
     product_image,
   } = offer;
-
+  // console.log(offer);
+  // console.log(product_image);
   const mainPicture = product_image.secure_url;
   const sellersName = owner.account.username;
-  const sellersAvatar = offer.owner.account.avatar;
+  const sellersAvatar = owner.account.avatar;
   return (
     <article className="each-offer">
       <div className="seller">
@@ -31,8 +32,8 @@ const Offer = ({ offer }) => {
         <div className="main-image-container">
           <img src={mainPicture} alt="" />
         </div>
-        <div>
-          <p>{`${product_price} €`}</p>
+        <div className="home-product-details">
+          <p className="price">{`${product_price} €`}</p>
           {product_details
             .slice(0)
             .reverse()
@@ -44,14 +45,10 @@ const Offer = ({ offer }) => {
                 </div>
               );
             })}
-
-          {/* <p>{product_price}</p>
-          <p>{TAILLE}</p>
-          <p>{MARQUE}</p> */}
         </div>
       </Link>
     </article>
   );
 };
 
-export default Offer;
+export default OfferDisplay;

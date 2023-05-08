@@ -4,7 +4,7 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const LoginForm = ({ setModalVisible, setToken }) => {
+const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
   // DECLARE STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,7 @@ const LoginForm = ({ setModalVisible, setToken }) => {
         email,
         password,
       });
-
+      setErrorMessage("");
       setToken(result.data.token);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
@@ -70,8 +70,17 @@ const LoginForm = ({ setModalVisible, setToken }) => {
           onChange={handlePasswordChange}
           value={password}
         />
-        <button type="submit">Se connecter</button>
-        {errorMessage && <p>{errorMessage}</p>}
+        <div className="modal-submit">
+          <button type="submit">Se connecter</button>
+          {errorMessage && <span>{errorMessage}</span>}
+          <p
+            onClick={() => {
+              setWhichModal("signup");
+            }}
+          >
+            Pas encore de compte ? Inscris-toi !
+          </p>
+        </div>
       </form>
     </div>
   );

@@ -1,8 +1,12 @@
 .all-offer {
-  border: green 2px solid;
-  /* width: 100vw; */
-  margin: 25px;
+  /* border: green 2px solid; */
+  height: 480px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 10px;
+}
+
+.no-offer-available {
+  text-align: center;
+  font-style: italic;
 }

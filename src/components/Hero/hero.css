@@ -1,22 +1,43 @@
 .hero {
+  /* border: 2px magenta solid; */
   position: relative;
-  height: 50vh;
-}
-.hero img {
-  height: 50vh;
-  width: 100%;
-  object-fit: cover;
+  height: 430px;
+  margin-bottom: 15px;
 }
 
-.hero > div {
+.hero-images {
+  /* border: 2px blue solid; */
+  height: 100%;
+  width: 100%;
+}
+
+/* the background picture */
+.hero img:first-child {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+/* the tear effect */
+.hero .tear {
+  /* border: 2px goldenrod solid; */
+  height: 10%;
+  width: 50%;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.hero-selling-section {
   /* border: magenta 2px solid; */
   height: 50%;
   width: 400px;
   padding: 50px;
   background-color: white;
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 50px;
+  left: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;

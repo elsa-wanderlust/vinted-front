@@ -1,11 +1,12 @@
 import "./allOffers.css";
-import Offer from "../Offer";
+import OfferDisplay from "../OfferDisplay";
 
 const AllOffers = ({ allOffers }) => {
+  // console.log(allOffers);
   return (
-    <div className="all-offer">
+    <div className="all-offer container">
       {allOffers.map((elem) => {
-        return <Offer key={elem._id} offer={elem} />;
+        return <OfferDisplay key={elem._id} offer={elem} />;
       })}
     </div>
   );

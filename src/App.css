@@ -1,64 +1,26 @@
 /* GENERAL */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
+*:focus {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .app {
   font-family: "Roboto", sans-serif;
   position: relative;
 }
 
+/* so we can't scroll when the modal is open */
+.app.no-scroll {
+  position: fixed;
+}
+
 .container {
-  border: 2px red solid;
+  /* border: 2px red solid; */
   max-width: 1244px;
   margin: 0 auto;
-  height: 100%;
-}
-
-/* OFFER PAGE */
-
-.offer-page .container {
-  height: 85vh;
-  background-color: lightgrey;
-  display: flex;
-  padding: 35px 50px;
-  gap: 45px;
-}
-
-.pictures-offer-page {
-  border: green solid 1px;
-  flex: 45;
-}
-
-.items-details-offer-page {
-  border: green solid 1px;
-  flex: 30;
-  background-color: white;
-  border-radius: 5px;
-  padding: 50px 30px;
-  gap: 20px;
-}
-
-.price-and-item-details {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-bottom: lightgray 0.5px solid;
-  padding-bottom: 20px;
-}
-
-.items-details-offer-page .price {
-  font-size: 24px;
-  line-height: 32px;
-}
-
-.items-details-offer-page .item-details {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-  line-height: 12px;
-}
-
-.items-details-offer-page .item-details > div {
-  display: flex;
-  justify-content: space-between;
 }

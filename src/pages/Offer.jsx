@@ -6,12 +6,12 @@ import { useParams } from "react-router-dom";
 import SelectedOffer from "../components/SelectedOffer/";
 
 const Offer = () => {
-  // DECLARE STATES
+  // DECLARE STATE(S)
   const [isLoading, setisLoading] = useState(true);
   const [data, setData] = useState([]);
   // HANDLE PARAMS
   const { id } = useParams();
-  // HANDLE PARAMS
+
   useEffect(() => {
     const fetchData = async () => {
       try {

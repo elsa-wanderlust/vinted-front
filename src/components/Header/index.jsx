@@ -1,6 +1,7 @@
 import "./header.css";
 import logo from "../../assets/img/vinted-logo.png";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 // IMPORT COMPONENT(S)
 import FilterOffers from "../FilterOffers";
@@ -19,7 +20,9 @@ const Header = ({
   togglePriceDesc,
   setTogglePriceDesc,
 }) => {
-  const cookie = Cookies.get("tokenVinted");
+  // DECLARE VARIABLE(S)
+  const navigate = useNavigate();
+  const token = Cookies.get("tokenVinted");
 
   return (
     <header>
@@ -37,36 +40,54 @@ const Header = ({
           togglePriceDesc={togglePriceDesc}
           setTogglePriceDesc={setTogglePriceDesc}
         />
-        <section className="buttons">
-          {!cookie ? (
-            <div>
-              <button
-                onClick={() => {
-                  setModalVisible(!modalVisible);
-                  setWhichModal("signup");
-                }}
-              >
-                S'inscrire
-              </button>
-              <button
-                onClick={() => {
-                  setModalVisible(!modalVisible);
-                  setWhichModal("login");
-                }}
-              >
-                Se connecter
-              </button>
-            </div>
-          ) : (
+        <section className="header-buttons">
+          <div>
+            {!token ? (
+              <div className="signup-login-buttons">
+                <button
+                  onClick={() => {
+                    setModalVisible(!modalVisible);
+                    setWhichModal("signup");
+                  }}
+                >
+                  S'inscrire
+                </button>
+                <button
+                  onClick={() => {
+                    setModalVisible(!modalVisible);
+                    setWhichModal("login");
+                  }}
+                >
+                  Se connecter
+                </button>
+              </div>
+            ) : (
+              <div className="disconnect-button">
+                <button
+                  onClick={() => {
+                    Cookies.remove("tokenVinted");
+                    setToken("");
+                  }}
+                >
+                  Se déconnecter
+                </button>
+              </div>
+            )}
+          </div>
+          <div className="header-sell-articles">
             <button
               onClick={() => {
-                Cookies.remove("tokenVinted");
-                setToken("");
+                if (token) {
+                  navigate("/publish");
+                } else {
+                  setModalVisible(true);
+                  setWhichModal("login");
+                }
               }}
             >
-              Se déconnecter
+              Vends tes articles
             </button>
-          )}
+          </div>
         </section>
       </div>
     </header>

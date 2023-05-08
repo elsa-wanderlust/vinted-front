@@ -1,17 +1,91 @@
 .all-filters {
-  width: 40%;
+  /* border: 2px green solid; */
+  width: 580px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+  padding-right: 40px;
 }
+/* SEARCH FIELD : magnifying glass and input field */
+.search-field {
+  height: 40px;
+  background-color: #f5f6f7;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+}
+.magnifying-glass {
+  height: 100%;
+  color: #bbbbbb;
+  margin-right: 15px;
+}
+
+.search-field > input {
+  height: 40px;
+  flex: 1;
+  background-color: inherit;
+  border: none;
+  color: lightgray;
+  font-size: medium;
+}
+
+.search-field > input:focus {
+  color: black;
+}
+
+/* color placeholder for all browser */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgray;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: lightgray;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: lightgray;
+}
+
+/* PRICES : ascending/descending and price filtering */
 
 .price-filters {
   display: flex;
+  gap: 25px;
 }
 
 .price-sorting {
+  /* border: red 2px solid; */
   display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
 }
 
-price-sorting:oncolor {
+/* toggle */
+Switch {
+  box-shadow: none;
+  height: 20px;
+  width: 60px;
+}
+
+/* price min and max */
+.price-min-max {
   display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.price-min-max input {
+  background-color: #f5f6f7;
+  width: 110px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
 }

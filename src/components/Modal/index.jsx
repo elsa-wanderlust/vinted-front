@@ -4,7 +4,7 @@ import "./modal.css";
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
 
-const Modal = ({ setModalVisible, whichModal, setToken }) => {
+const Modal = ({ setModalVisible, setWhichModal, whichModal, setToken }) => {
   return (
     <div
       className="modal-container"
@@ -13,9 +13,17 @@ const Modal = ({ setModalVisible, whichModal, setToken }) => {
       }}
     >
       {whichModal === "signup" ? (
-        <SignUpForm setModalVisible={setModalVisible} setToken={setToken} />
+        <SignUpForm
+          setModalVisible={setModalVisible}
+          setWhichModal={setWhichModal}
+          setToken={setToken}
+        />
       ) : (
-        <LoginForm setModalVisible={setModalVisible} setToken={setToken} />
+        <LoginForm
+          setModalVisible={setModalVisible}
+          setWhichModal={setWhichModal}
+          setToken={setToken}
+        />
       )}
     </div>
   );

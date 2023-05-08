@@ -4,7 +4,7 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const SignUpForm = ({ setModalVisible, setToken }) => {
+const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
   // DECLARE STATE(S)
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -36,6 +36,7 @@ const SignUpForm = ({ setModalVisible, setToken }) => {
         password,
         newsletter,
       });
+      setErrorMessage("");
       setToken(result.data.token);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
@@ -87,17 +88,33 @@ const SignUpForm = ({ setModalVisible, setToken }) => {
           onChange={handlePasswordChange}
           value={password}
         />
-        <div className="newsletter">
-          <input
-            id="newsletter"
-            type="checkbox"
-            name="newsletter"
-            onClick={handleClickNewsletter}
-          />
-          <label htmlFor="newsletter">S'inscrire à la newsletter</label>
+        <div className="newsletter-and-conditions">
+          <div className="newsletter">
+            <input
+              id="newsletter"
+              type="checkbox"
+              name="newsletter"
+              onClick={handleClickNewsletter}
+            />
+            <label htmlFor="newsletter">S'inscrire à la newsletter</label>
+          </div>
+          <p className="conditions">
+            En m'inscrivant je confirme avoir lu et accepté les Termes &
+            Conditions et Politique de Confidentialité de Vinted. Je confirme
+            avoir au moins 18 ans.
+          </p>
         </div>
-        <button type="submit">S'inscrire</button>
-        {errorMessage && <p>{errorMessage}</p>}
+        <div className="modal-submit">
+          <button type="submit">S'inscrire</button>
+          {errorMessage && <span>{errorMessage}</span>}
+          <p
+            onClick={() => {
+              setWhichModal("login");
+            }}
+          >
+            Tu as déjà un compte ? Connecte-toi !
+          </p>
+        </div>
       </form>
     </div>
   );
