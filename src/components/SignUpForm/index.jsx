@@ -1,8 +1,9 @@
 import "./signUpForm.css";
 import { useState } from "react";
-import axios from "axios"; // to be able to send request
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
   // DECLARE STATE(S)
@@ -10,6 +11,7 @@ const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const [avatar, setAvatar] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   // DECLARE VARIABLE(S)
   const navigate = useNavigate();
@@ -30,12 +32,18 @@ const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await axios.post("http://localhost:3000/user/signup", {
-        username,
-        email,
-        password,
-        newsletter,
-      });
+      // need to create a new instance of the FormData constructor (when sending file(s), we cant do it as body but need to use FormData)
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("newsletter", newsletter);
+      formData.append("avatar", avatar);
+
+      const result = await axios.post(
+        "http://localhost:3000/user/signup",
+        formData
+      );
       setErrorMessage("");
       setToken(result.data.token);
       setModalVisible(false);
@@ -88,6 +96,35 @@ const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
           onChange={handlePasswordChange}
           value={password}
         />
+        <section id="add-avatar">
+          {!avatar && (
+            <div className="add-avatar-label">
+              <label>
+                <FontAwesomeIcon className="plus-sign" icon="plus" /> &nbsp;
+                Ajoute un avatar
+                <input
+                  type="file"
+                  onChange={(event) => {
+                    setAvatar(event.target.files[0]);
+                  }}
+                />
+              </label>
+            </div>
+          )}
+          {avatar && (
+            <div className="uploaded-avatar">
+              <img src={URL.createObjectURL(avatar)} alt="" />
+              <button
+                className="closing-button"
+                onClick={() => {
+                  setAvatar("");
+                }}
+              >
+                X
+              </button>
+            </div>
+          )}
+        </section>
         <div className="newsletter-and-conditions">
           <div className="newsletter">
             <input

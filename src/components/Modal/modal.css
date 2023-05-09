@@ -82,7 +82,7 @@ button {
 
 .modal-submit p {
   font-size: 12px;
-  line-height: 10px;
+  /* line-height: 18px; */
 }
 
 .modal-submit p:hover {
@@ -101,4 +101,49 @@ button {
   top: -5px;
   right: -5px;
   border: #2baeb7 1px solid;
+}
+
+/* AVATAR - SIGNUP FORM ONLY */
+
+#add-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-avatar-label {
+  cursor: pointer;
+  border: white solid 1px;
+  color: white;
+  border-radius: 5px;
+  height: 50px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* to hide the by default button for uploading */
+#add-avatar input {
+  display: none;
+}
+
+/* once a picture is uploaded */
+.uploaded-avatar {
+  position: relative;
+}
+
+.uploaded-avatar img {
+  height: 50px;
+  width: auto;
+}
+
+#add-avatar .uploaded-avatar button {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  top: -6px;
+  right: -6px;
 }
