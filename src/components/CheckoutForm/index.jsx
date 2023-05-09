@@ -4,22 +4,28 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js"; /
 // import { useState } from "react";
 
 const CheckoutForm = () => {
-  const elements = useElements(); // as per Stripe pkd documentation, to get the CC details entered in CardElement components
   const stripe = useStripe(); // as per Stripe pkd documentation, to send CC details to stripe (and if valid, get a token back)
+  const elements = useElements(); // as per Stripe pkd documentation, to get the CC details entered in CardElement components
 
   // DECLARE FUNCTION TO HANDLE PAYMENT
-  const handlePaySubmit = async () => {
-    // STEP 1.5: recuperate CC details entered in form
-    const cardElement = elements.getElement(CardElement);
+  const handlePaySubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // STEP 1.5: recuperate CC details entered in form
+      const cardElement = elements.getElement(CardElement);
 
-    // STEP 2: send CC info to stripe to check validity
-    const stripeResponse = await stripe.createToken(cardElement, {
-      name: "L'id de l'acheteur",
-    });
+      // STEP 2: send CC info to stripe to check validity
+      //   const stripeResponse = await stripe.createToken(cardElement, {
+      //     name: { userId },
+      //   });
+      //   console.log(stripeResponse);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
-    <div>
+    <div className="payment-page">
       <section>
         <h2>Résumé de la commande</h2>
         <div>
@@ -39,7 +45,7 @@ const CheckoutForm = () => {
         <div>
           <p>
             Il ne reste plus qu'une étape pour votre offre l'article{" "}
-            <span>XXX</span>. Vous allez payer XXX (frais de protectection et de
+            <span>XXX</span>. Vous allez payer XXX (frais de protection et de
             port inclus).
           </p>
         </div>

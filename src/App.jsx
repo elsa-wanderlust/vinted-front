@@ -67,7 +67,7 @@ function App() {
           />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="/publish" element={<Publish />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment" element={<Payment userId={userId} />} />
         </Routes>
         {modalVisible && (
           <Modal
