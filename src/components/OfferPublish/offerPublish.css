@@ -1,6 +1,6 @@
 .publish-page {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #ebedee;
 }
 
@@ -27,25 +27,122 @@
   background-color: white;
 }
 
+/* ADD A PICTURE */
+
 .publish-page form .add-picture {
   height: 250px;
   padding: 25px;
 }
 
-form .add-picture .dot-border {
+form .add-picture .dashed-border {
   height: 100%;
   width: 100%;
   hyphens: auto;
-  border: lightgray 1px dotted;
+  border: lightgray 1px dashed;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.add-picture label {
+.add-picture-label {
   cursor: pointer;
+  border: #2baeb7 solid 1px;
+  color: #2baeb7;
+  border-radius: 5px;
+  height: 50px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.add-picture-label .plus-sign {
+  font-size: 22px;
+}
+
+/* to hide the by default button for uploading */
 .add-picture input {
+  display: none;
+}
+
+/* once a picture is uploaded */
+.uploaded-picture {
+  position: relative;
+}
+
+.uploaded-picture img {
+  height: 195px;
+  width: auto;
+}
+
+.uploaded-picture button {
+  position: absolute;
+  background-color: white;
+  border: darkgray 1px solid;
+  color: black;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  top: -5px;
+  right: -5px;
+}
+
+/* DETAILS OF THE OFFER */
+/* HEIGHT OF EACH BLOCK */
+
+.publish-page form > section:nth-child(2) {
+  height: 220px;
+}
+
+.publish-page form > section:nth-child(3) {
+  height: 360px;
+}
+
+.new-offer-details {
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.new-offer-details > div {
+  /* border: BLUE 1px solid; */
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.new-offer-details > div:not(:last-child) {
+  border-bottom: darkgray solid 0.5px;
+}
+
+.new-offer-details .left-section {
+  /* border: red 1px solid; */
+  width: 50%;
+  padding-left: 25px;
+}
+
+.new-offer-details input {
+  /* border: blue 1px solid; */
+  width: 50%;
+  height: 25px;
+  padding-right: 25px;
+  border: none;
+  border-bottom: darkgray 1px solid;
+}
+
+.publish-page form > button {
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #2baeb7;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-left: 70%;
+  margin-top: 10px;
+}
+
+.publish-page form > button.hidden {
   display: none;
 }

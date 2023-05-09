@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios"; // to be able to send request
 import Cookies from "js-cookie";
 import "./offerPublish.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // IMPORT COMPONENT(S)
 import AfterPublishing from "../AfterPublishing";
@@ -35,7 +36,6 @@ const OfferPublish = () => {
       formData.append("city", newLocation);
       formData.append("price", newPrice);
       formData.append("picture", newPicture);
-
       const token = Cookies.get("tokenVinted");
 
       const serverResponse = await axios.post(
@@ -57,103 +57,132 @@ const OfferPublish = () => {
       <h1>Vends ton article</h1>
       <form onSubmit={handleSubmit}>
         <section className="add-picture">
-          <div className="dot-border">
-            <label>
-              Image principale
-              <input
-                type="file"
-                onChange={(event) => {
-                  setNewPicture(event.target.files[0]);
-                }}
-              />
-            </label>
-            <label>
-              Images secondaires - 1 sur 3
-              <input type="file" onChange={(event) => {}} />
-            </label>
-            <label>
-              Images secondaires - 2 sur 3
-              <input type="file" onChange={(event) => {}} />
-            </label>
-            <label>
-              Images secondaires - 3 sur 3
-              <input type="file" onChange={(event) => {}} />
-            </label>
+          <div className="dashed-border">
+            {!newPicture && (
+              <div className="add-picture-label">
+                <label>
+                  <FontAwesomeIcon className="plus-sign" icon="plus" /> &nbsp;
+                  Ajoute une photo
+                  <input
+                    type="file"
+                    onChange={(event) => {
+                      setNewPicture(event.target.files[0]);
+                    }}
+                  />
+                </label>
+              </div>
+            )}
+            {newPicture && (
+              <div className="uploaded-picture">
+                <img src={URL.createObjectURL(newPicture)} alt="" />
+                <button
+                  className="closing-button"
+                  onClick={() => {
+                    setNewPicture("");
+                  }}
+                >
+                  X
+                </button>
+              </div>
+            )}
           </div>
         </section>
-        <section className="new-title-desc">
-          <input
-            type="text"
-            id=""
-            placeholder="ex: Chemise turquoise à rayures jaunes"
-            value={newTitle}
-            onChange={(event) => {
-              setNewTitle(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="ex: chemise légère et moche, idéale pour bricoler et jardiner"
-            value={newDescription}
-            onChange={(event) => {
-              setNewDescription(event.target.value);
-            }}
-          />
+        <section className="new-offer-details">
+          <div>
+            <p className="left-section">Title</p>
+            <input
+              type="text"
+              id=""
+              placeholder="ex: Chemise turquoise à rayures jaunes"
+              value={newTitle}
+              onChange={(event) => {
+                setNewTitle(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <p className="left-section">Décris ton article</p>
+            <input
+              type="text"
+              placeholder="ex: Chemise légère et moche, idéale pour bricoler et jardiner"
+              value={newDescription}
+              onChange={(event) => {
+                setNewDescription(event.target.value);
+              }}
+            />
+          </div>
         </section>
-
-        <section className="new-product-details">
-          <input
-            type="text"
-            placeholder="ex: Intermarché"
-            value={newBrand}
-            onChange={(event) => {
-              setNewBrand(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="ex: L / 40 / 12"
-            value={newSize}
-            onChange={(event) => {
-              setNewSize(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="ex: Turquoise flashy et jaune douteux"
-            value={newColor}
-            onChange={(event) => {
-              setNewColor(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="ex: très peu portée"
-            value={newCondition}
-            onChange={(event) => {
-              setNewCondition(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="ex: Paris"
-            value={newLocation}
-            onChange={(event) => {
-              setNewLocation(event.target.value);
-            }}
-          />
+        <section className="new-offer-details">
+          <div>
+            <p className="left-section">Marque</p>
+            <input
+              type="text"
+              placeholder="ex: Intermarché"
+              value={newBrand}
+              onChange={(event) => {
+                setNewBrand(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <p className="left-section">Taille</p>
+            <input
+              type="text"
+              placeholder="ex: L / 40 / 12"
+              value={newSize}
+              onChange={(event) => {
+                setNewSize(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <p className="left-section">Couleur</p>
+            <input
+              type="text"
+              placeholder="ex: Turquoise flashy et jaune douteux"
+              value={newColor}
+              onChange={(event) => {
+                setNewColor(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <p className="left-section">Etat</p>
+            <input
+              type="text"
+              placeholder="ex: très peu portée"
+              value={newCondition}
+              onChange={(event) => {
+                setNewCondition(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <p className="left-section">Lieu</p>
+            <input
+              type="text"
+              placeholder="ex: Paris"
+              value={newLocation}
+              onChange={(event) => {
+                setNewLocation(event.target.value);
+              }}
+            />
+          </div>
         </section>
-        <section className="new-product-price">
-          <input
-            type="text"
-            placeholder="0,00 €"
-            value={newPrice}
-            onChange={(event) => {
-              setNewPrice(event.target.value);
-            }}
-          />
+        <section className="new-offer-details">
+          <div>
+            <p className="left-section">Prix</p>
+            <input
+              type="text"
+              placeholder="0,00 €"
+              value={newPrice}
+              onChange={(event) => {
+                setNewPrice(event.target.value);
+              }}
+            />
+          </div>
         </section>
-        <button>Ajouter</button>
+        <button className={newOfferId && "hidden"}>Ajouter</button>
       </form>
       <div>
         {newOfferId && (

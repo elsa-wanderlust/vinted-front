@@ -15,8 +15,9 @@ import {
   faArrowDown,
   faCircle,
   faMagnifyingGlass,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faArrowUp, faArrowDown, faCircle, faMagnifyingGlass);
+library.add(faArrowUp, faArrowDown, faCircle, faMagnifyingGlass, faPlus);
 
 function App() {
   // DECLARE STATE(S)
