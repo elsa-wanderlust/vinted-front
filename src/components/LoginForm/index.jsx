@@ -4,7 +4,7 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
+const LoginForm = ({ setModalVisible, setWhichModal, setToken, setUserId }) => {
   // DECLARE STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,8 +27,12 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
         email,
         password,
       });
+      console.log(result.data);
+      console.log(result.data.token);
+      console.log(result.data._id);
       setErrorMessage("");
       setToken(result.data.token);
+      setUserId(result.data._id);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");

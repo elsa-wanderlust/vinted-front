@@ -1,7 +1,7 @@
 import "./filterOffers.css";
 import Switch from "react-switch"; // pkg for the price sorting toggle
-import { Range } from "react-range"; // pkg for the price range sliding buttons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { useNavigate } from "react-router-dom";
 
 const FilterOffers = ({
   search,
@@ -13,6 +13,17 @@ const FilterOffers = ({
   togglePriceDesc,
   setTogglePriceDesc,
 }) => {
+  // DEBUT ESSAI
+  // const navigate = useNavigate();
+  // const params = { title: { search }, priceMin: { priceMin } };
+  // const handleSubmitSearch = () => {
+  //   navigate({
+  //     pathname: "/",
+  //     search: `?${createSearchParams(params)}`,
+  //   });
+  // };
+  // FIN ESSAI
+
   // DECLARE FUNCTIONS TO HANDLE CHANGES IN THE 'FILTERS'
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
@@ -128,6 +139,7 @@ const FilterOffers = ({
               value={priceMax}
             />
           </div>
+          {/* <button onClick={handleSubmitSearch}>Rechercher</button> */}
         </div>
       </section>
     </div>

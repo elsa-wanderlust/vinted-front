@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
+const SignUpForm = ({
+  setModalVisible,
+  setWhichModal,
+  setToken,
+  setUserId,
+}) => {
   // DECLARE STATE(S)
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -46,6 +51,7 @@ const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
       );
       setErrorMessage("");
       setToken(result.data.token);
+      setUserId(result.data._id);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
       navigate("/");

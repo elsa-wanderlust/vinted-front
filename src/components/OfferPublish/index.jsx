@@ -72,6 +72,7 @@ const OfferPublish = () => {
                 </label>
               </div>
             )}
+            {/* create a 'fake' URL so we can preview the picture */}
             {newPicture && (
               <div className="uploaded-picture">
                 <img src={URL.createObjectURL(newPicture)} alt="" />
@@ -103,7 +104,7 @@ const OfferPublish = () => {
           <div>
             <p className="left-section">Décris ton article</p>
             <input
-              type="text"
+              type="textarea"
               placeholder="ex: Chemise légère et moche, idéale pour bricoler et jardiner"
               value={newDescription}
               onChange={(event) => {
@@ -173,11 +174,14 @@ const OfferPublish = () => {
           <div>
             <p className="left-section">Prix</p>
             <input
-              type="text"
+              type="number"
               placeholder="0,00 €"
               value={newPrice}
               onChange={(event) => {
-                setNewPrice(event.target.value);
+                console.log(event.target.value);
+                if (event.target.value >= 0) {
+                  setNewPrice(event.target.value);
+                }
               }}
             />
           </div>
@@ -197,6 +201,7 @@ const OfferPublish = () => {
             setNewLocation={setNewLocation}
             setNewPrice={setNewPrice}
             setNewPicture={setNewPicture}
+            setNewOfferId={setNewOfferId}
           />
         )}
       </div>

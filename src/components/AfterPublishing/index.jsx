@@ -12,6 +12,7 @@ const AfterPublishing = ({
   setNewLocation,
   setNewPrice,
   setNewPicture,
+  setNewOfferId,
 }) => {
   // DECLARE VARIABLE(S)
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const AfterPublishing = ({
             setNewLocation("");
             setNewPrice("");
             setNewPicture("");
+            setNewOfferId("");
             navigate(`/publish`);
           }}
         >

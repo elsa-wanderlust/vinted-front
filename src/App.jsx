@@ -2,12 +2,15 @@
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 // IMPORT COMPONENT(S)
 import Header from "./components/Header";
 import Modal from "./components/Modal";
+
 import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 // FONTAWESOME
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -28,6 +31,7 @@ function App() {
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
   const [togglePriceDesc, setTogglePriceDesc] = useState(false);
+  const [userId, setUserId] = useState("");
 
   return (
     <Router>
@@ -45,6 +49,7 @@ function App() {
           setPriceMax={setPriceMax}
           togglePriceDesc={togglePriceDesc}
           setTogglePriceDesc={setTogglePriceDesc}
+          setUserId={setUserId}
         />
         <Routes>
           <Route
@@ -62,6 +67,7 @@ function App() {
           />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="/publish" element={<Publish />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
         {modalVisible && (
           <Modal
@@ -69,6 +75,7 @@ function App() {
             setWhichModal={setWhichModal}
             whichModal={whichModal}
             setToken={setToken}
+            setUserId={setUserId}
           />
         )}
       </div>

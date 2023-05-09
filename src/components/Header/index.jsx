@@ -19,6 +19,7 @@ const Header = ({
   setPriceMax,
   togglePriceDesc,
   setTogglePriceDesc,
+  setUserId,
 }) => {
   // DECLARE VARIABLE(S)
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ const Header = ({
                   onClick={() => {
                     Cookies.remove("tokenVinted");
                     setToken("");
+                    setUserId("");
                   }}
                 >
                   Se déconnecter
