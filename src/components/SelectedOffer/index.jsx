@@ -1,8 +1,9 @@
 import "./selectedOffer.css";
+import { Link } from "react-router-dom";
 
-const SelectedOffer = ({ offerSelected }) => {
+const SelectedOffer = ({ offerSelected, userId }) => {
   const {
-    // _id,
+    _id,
     product_name,
     product_description,
     product_price,
@@ -18,7 +19,6 @@ const SelectedOffer = ({ offerSelected }) => {
     }
   }
   const sellersAvatar = owner.account.avatar;
-  console.log(sellersAvatar);
   return (
     <div className="offer-page">
       <section>
@@ -55,7 +55,17 @@ const SelectedOffer = ({ offerSelected }) => {
           )}
           <p>{owner.account.username}</p>
         </div>
-        <button>Acheter</button>
+        <Link
+          to="/payment"
+          state={{
+            description: `identifiant article : ${_id}, intitulé de l'article : ${product_name}`,
+            price: product_price,
+            userId: userId,
+            productId: _id,
+          }}
+        >
+          Acheter
+        </Link>
       </section>
     </div>
   );

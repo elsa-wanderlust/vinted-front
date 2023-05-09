@@ -27,9 +27,6 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken, setUserId }) => {
         email,
         password,
       });
-      console.log(result.data);
-      console.log(result.data.token);
-      console.log(result.data._id);
       setErrorMessage("");
       setToken(result.data.token);
       setUserId(result.data._id);
