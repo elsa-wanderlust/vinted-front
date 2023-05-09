@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 // IMPORT COMPONENTS
 import SelectedOffer from "../components/SelectedOffer/";
 
-const Offer = () => {
+const Offer = ({ setModalVisible, setWhichModal }) => {
   // DECLARE STATE(S)
   const [isLoading, setisLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -35,7 +35,11 @@ const Offer = () => {
         <p>isloading</p>
       ) : (
         <div>
-          <SelectedOffer offerSelected={data} />
+          <SelectedOffer
+            offerSelected={data}
+            setModalVisible={setModalVisible}
+            setWhichModal={setWhichModal}
+          />
         </div>
       )}
     </div>

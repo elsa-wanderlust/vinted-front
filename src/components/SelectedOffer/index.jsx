@@ -1,7 +1,8 @@
 import "./selectedOffer.css";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const SelectedOffer = ({ offerSelected, userId }) => {
+const SelectedOffer = ({ offerSelected, setModalVisible, setWhichModal }) => {
   const {
     _id,
     product_name,
@@ -11,6 +12,7 @@ const SelectedOffer = ({ offerSelected, userId }) => {
     // product_pictures,
     owner,
     product_image,
+    product_availability,
   } = offerSelected;
   let product_details2 = {};
   for (let i = 0; i < product_details.length; i++) {
@@ -19,10 +21,17 @@ const SelectedOffer = ({ offerSelected, userId }) => {
     }
   }
   const sellersAvatar = owner.account.avatar;
+  const token = Cookies.get("tokenVinted");
+
   return (
     <div className="offer-page">
       <section>
         <img src={product_image.secure_url} alt="" />
+        {product_availability === false && (
+          <div className="sold-container">
+            <p className="sold">Vendu !</p>
+          </div>
+        )}
       </section>
       <section>
         <div className="price-and-item-details">
@@ -55,17 +64,18 @@ const SelectedOffer = ({ offerSelected, userId }) => {
           )}
           <p>{owner.account.username}</p>
         </div>
-        <Link
-          to="/payment"
-          state={{
-            description: `identifiant article : ${_id}, intitulé de l'article : ${product_name}`,
-            price: product_price,
-            userId: userId,
-            productId: _id,
-          }}
-        >
-          Acheter
-        </Link>
+        {product_availability !== false && token !== "" && (
+          <Link
+            to="/payment"
+            state={{
+              description: `identifiant article : ${_id}, intitulé de l'article : ${product_name}`,
+              price: product_price,
+              productId: _id,
+            }}
+          >
+            Acheter
+          </Link>
+        )}
       </section>
     </div>
   );

@@ -65,7 +65,15 @@ function App() {
               />
             }
           />
-          <Route path="/offer/:id" element={<Offer />} />
+          <Route
+            path="/offer/:id"
+            element={
+              <Offer
+                setModalVisible={setModalVisible}
+                setWhichModal={setWhichModal}
+              />
+            }
+          />
           <Route path="/publish" element={<Publish />} />
           <Route path="/payment" element={<Payment userId={userId} />} />
         </Routes>

@@ -13,7 +13,7 @@ const FilterOffers = ({
   togglePriceDesc,
   setTogglePriceDesc,
 }) => {
-  // DEBUT ESSAI
+  // DEBUT ESSAI - have filters showing in the URL
   // const navigate = useNavigate();
   // const params = { title: { search }, priceMin: { priceMin } };
   // const handleSubmitSearch = () => {

@@ -56,6 +56,10 @@ form .add-picture .dashed-border {
   justify-content: center;
 }
 
+.add-picture-label label {
+  cursor: pointer;
+}
+
 .add-picture-label .plus-sign {
   font-size: 22px;
 }

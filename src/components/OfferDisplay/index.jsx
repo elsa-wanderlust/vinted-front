@@ -1,5 +1,6 @@
 import "./offerDisplay.css";
 import { Link } from "react-router-dom";
+import sold from "../../assets/img/sold.png";
 
 const OfferDisplay = ({ offer }) => {
   const {
@@ -10,9 +11,8 @@ const OfferDisplay = ({ offer }) => {
     // product_pictures,
     owner,
     product_image,
+    product_availability,
   } = offer;
-  // console.log(offer);
-  // console.log(product_image);
   const mainPicture = product_image.secure_url;
   const sellersName = owner.account.username;
   const sellersAvatar = owner.account.avatar;
@@ -31,6 +31,11 @@ const OfferDisplay = ({ offer }) => {
       <Link className="link-to-offer" to={`/offer/${_id}`}>
         <div className="main-image-container">
           <img src={mainPicture} alt="" />
+          {product_availability === false && (
+            <div className="sold-container">
+              <p className="sold">Vendu !</p>
+            </div>
+          )}
         </div>
         <div className="home-product-details">
           <p className="price">{`${product_price} €`}</p>

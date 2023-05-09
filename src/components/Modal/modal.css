@@ -109,10 +109,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+#add-avatar label {
+  cursor: pointer;
 }
 
 .add-avatar-label {
-  cursor: pointer;
   border: white solid 1px;
   color: white;
   border-radius: 5px;
