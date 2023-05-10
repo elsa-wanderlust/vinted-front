@@ -4,7 +4,13 @@ import axios from "axios"; // to be able to send request
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const LoginForm = ({ setModalVisible, setWhichModal, setToken, setUserId }) => {
+const LoginForm = ({
+  setModalVisible,
+  setWhichModal,
+  setToken,
+  setUserId,
+  whichModal,
+}) => {
   // DECLARE STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +38,7 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken, setUserId }) => {
       setUserId(result.data._id);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
-      navigate("/");
+      // navigate("/"); TBD? we woudlnt want to go back to home once connected?
     } catch (error) {
       if (error.response.status === 401) {
         setErrorMessage("L'email et/ou le mot de passe ne sont pas correct");

@@ -54,7 +54,7 @@ const SignUpForm = ({
       setUserId(result.data._id);
       setModalVisible(false);
       Cookies.set("tokenVinted", result.data.token, { expires: 7 });
-      navigate("/");
+      // navigate("/"); TBD? we woudlnt want to go back to home once connected?
     } catch (error) {
       if (error.response.status === 409) {
         setErrorMessage("Il y a déjà un compte associé à cet email");

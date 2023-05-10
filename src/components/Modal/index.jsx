@@ -31,6 +31,7 @@ const Modal = ({
           setWhichModal={setWhichModal}
           setToken={setToken}
           setUserId={setUserId}
+          whichModal={whichModal}
         />
       )}
     </div>

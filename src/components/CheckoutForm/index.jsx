@@ -86,6 +86,7 @@ const CheckoutForm = ({ userId, description, price, productId }) => {
           <div>
             <p>{paymentStatus}</p>
             <button>Revenir à la page d'accueil</button>
+            <button>Voir l'article que l'on vient d'acheter</button>
           </div>
         )}
       </section>

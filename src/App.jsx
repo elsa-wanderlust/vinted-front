@@ -24,7 +24,7 @@ library.add(faArrowUp, faArrowDown, faCircle, faMagnifyingGlass, faPlus);
 
 function App() {
   // DECLARE STATE(S)
-  const [token, setToken] = useState();
+  const [token, setToken] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [whichModal, setWhichModal] = useState("");
   const [search, setSearch] = useState("");
